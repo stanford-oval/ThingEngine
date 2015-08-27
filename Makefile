@@ -31,6 +31,16 @@ test-data:
 	echo '[]' > home-android/devices.db
 	echo '{}' > home-android/prefs.db
 
+weather-data:
+	test -d home-server || mkdir home-server/
+	cp weather/server-apps.db home-server/apps.db
+	echo '[]' > home-server/devices.db
+	echo '{}' > home-server/prefs.db
+	test -d home-android || mkdir home-android/
+	cp weather/android-apps.db home-android/apps.db
+	echo '[]' > home-android/devices.db
+	echo '{}' > home-android/prefs.db
+
 run-server: build-server
 	test -d home-server || mkdir home-server/
 	cd home-server/ ; node ../platform/server/main.js --test

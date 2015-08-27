@@ -11,6 +11,8 @@
     "dependencies": {
         "q": "~1.4.0",
         "ws": "~0.7.0",
-        "node-uuid": "~1.4.0"
+        "node-uuid": "~1.4.0",
+        "xmlhttprequest": "~1.7.0",
+        "xml2js":"~0.4.4"
     }
 }
