@@ -33,12 +33,15 @@ drop index if exists device_lastModified;
 
 create index device_lastModified on device_journal(lastModified) ;
 
-insert into app (uniqueId, tier, state) values (
-       'config-pairing-65f9bc0f-98e1-450a-9677-64160e200dd5',
-       'all',
-       '{"kind":"config_pairing"}'
-);
-insert into app_journal (uniqueId, lastModified) values (
-       'config-pairing-65f9bc0f-98e1-450a-9677-64160e200dd5',
-       0
-);
+insert into app (uniqueId, tier, state) values
+       ('config-pairing-65f9bc0f-98e1-450a-9677-64160e200dd5',
+        'all',
+        '{"kind":"config_pairing"}'),
+       ('device-discovery-99ee20d8-deae-4309-ad43-de85acaa3378',
+        'server',
+        '{"kind":"device_discovery"}')
+;
+insert into app_journal (uniqueId, lastModified) values
+       ('config-pairing-65f9bc0f-98e1-450a-9677-64160e200dd5', 0),
+       ('device-discovery-99ee20d8-deae-4309-ad43-de85acaa3378', 0)
+;

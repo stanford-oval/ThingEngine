@@ -39,10 +39,16 @@ module.exports = new lang.Class({
         // (and factor CLOUD in the decision)
 
         var targetTier;
-        if (this._tierManager.ownTier == Tier.PHONE)
-            targetTier = Tier.SERVER;
-        else
+        if (forChannel.targetTier !== undefined) {
+            targetTier = forChannel.targetTier;
+        } else if (this._tierManager.ownTier == Tier.PHONE) {
+            // do NOT remove parenthesis from this statement
+            // (automatic semicolon insertion would screw you)
+            targetTier = (this._tierManager.isConfigured(Tier.SERVER) ?
+                          Tier.SERVER : Tier.CLOUD);
+        } else {
             targetTier = Tier.PHONE;
+        }
 
         return this._proxyManager.getProxyChannel(forChannel, targetTier, args);
     },
@@ -71,7 +77,7 @@ module.exports = new lang.Class({
             return this._cachedChannels[fullId];
 
         return this._cachedChannels[fullId] = this._downloader.getModule(id).then(function(factory) {
-            var channel = factory.createChannel.apply(factory, [this._engine].concat(args));
+            var channel = factory.createChannel.apply(factory, [this._engine].concat(args.slice(1)));
             channel.uniqueId = fullId;
 
             if (!channel.isSupported || channel.allowedTiers.indexOf(this._tierManager.ownTier) < 0) {

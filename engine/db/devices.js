@@ -25,6 +25,7 @@ module.exports = new lang.Class({
         this._devices = {};
         this._factory = deviceFactory;
 
+        this._tierManager = tierManager;
         this._syncdb = new SyncDatabase('device', ['state'], tierManager);
     },
 
@@ -140,5 +141,9 @@ module.exports = new lang.Class({
             return this._devices[uniqueId];
         else
             throw new Error('Unknown device ' + uniqueId);
-    }
+    },
+
+    getSelf: function() {
+        return this._devices['thingengine-own-' + this._tierManager.ownTier];
+    },
 });

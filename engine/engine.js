@@ -36,6 +36,10 @@ const Engine = new lang.Class({
         this._fatalCallback = null;
     },
 
+    get ownTier() {
+        return this._tiers.ownTier;
+    },
+
     get channels() {
         return this._channels;
     },

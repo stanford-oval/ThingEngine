@@ -1,0 +1,16 @@
+{
+  "name": "thingengine-upnp-ssdp",
+  "version": "1.0.0",
+  "description": "UPnP Service Discovery Protocol for ThingEngine",
+  "author": "Stanford IoT lab",
+  "contributors": [
+    {
+      "name": "Giovanni Campagna",
+      "email": "gcampagn@cs.stanford.edu"
+    }
+  ],
+  "main": "channel.js",
+  "dependencies": {
+    "node-ssdp": "~2.5.1"
+  }
+}
