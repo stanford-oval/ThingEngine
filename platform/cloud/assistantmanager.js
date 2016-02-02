@@ -132,18 +132,6 @@ const Feed = new lang.Class({
         return Q.ninvoke(this._client.messaging, '_sendObjToFeedImmediate', this._feed, 'text',
                          { text: text });
     },
-
-    sendItem: function(item) {
-        var silent = true;
-        return Q.ninvoke(this._client.messaging, '_sendObjToFeedImmediate', this._feed, 'text',
-                         { text: JSON.stringify(item), silent: silent,
-                           hidden: silent });
-    },
-
-    sendRaw: function(rawItem) {
-        return Q.ninvoke(this._client.messaging, '_sendObjToFeedImmediate', this._feed, rawItem.type,
-                         rawItem);
-    }
 });
 
 const Messaging = new lang.Class({
@@ -200,45 +188,6 @@ const Messaging = new lang.Class({
             return db._data.find({ owned: true }).map(function(o) {
                 return this.client.store.getObjectId(o);
             }, this)[0];
-        }.bind(this));
-    },
-
-    getUserById: function(id) {
-        return oinvoke(this.client.store, 'getAccounts').then(function(db) {
-            return oinvoke(db, 'getObjectById', id).then(function(o) {
-                return new OmletUser(this.client.store.getObjectId(o), o);
-            }.bind(this));
-        }.bind(this));
-    },
-
-    getAccountById: function(id) {
-        return oinvoke(this.client.store, 'getAccounts').then(function(db) {
-            return oinvoke(db, 'getObjectById', id).then(function(o) {
-                return o.account;
-            });
-        }.bind(this));
-    },
-
-    getAccountNameById: function(id) {
-        return oinvoke(this.client.store, 'getAccounts').then(function(db) {
-            return oinvoke(db, 'getObjectById', id).then(function(o) {
-                return o.name;
-            });
-        }.bind(this));
-    },
-
-    getFeedList: function() {
-        return oinvoke(this.client.store, 'getFeeds').then(function(db) {
-            var data = db._data.find();
-            return data.map(function(d) {
-                return d.identifier;
-            });
-        }.bind(this));
-    },
-
-    createFeed: function() {
-        return Q.ninvoke(this.client.feed, 'createFeed').then(function(feed) {
-            return new OmletFeed(this, feed.identifier);
         }.bind(this));
     },
 

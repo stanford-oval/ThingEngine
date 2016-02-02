@@ -21,37 +21,6 @@ const OmletUser = new lang.Class({
     }
 });
 
-const OmletFeedCursor = new lang.Class({
-    Name: 'OmletFeedCursor',
-    Extends: Tp.Messaging.FeedCursor,
-
-    _init: function(feed, db) {
-        this.parent(feed);
-
-        this._db = db;
-        this._data = db._data.chain().simplesort('serverTimestamp', true).data();
-        this._idx = 0;
-        this._client = this.feed._device.refOmletClient();
-    },
-
-    getValue: function() {
-        return this._data[this._idx];
-    },
-
-    hasNext: function() {
-        return this._idx < this._data.length;
-    },
-
-    next: function() {
-        return this._data[this._idx++];
-    },
-
-    destroy: function() {
-        this.feed._device.unrefOmletClient();
-        this._client = null;
-    },
-});
-
 function oinvoke(object, method) {
     var args = Array.prototype.slice.call(arguments, 2);
 
@@ -168,10 +137,6 @@ const OmletFeed = new lang.Class({
         this._messaging.feedClosed(this.feedId);
 
         return Q();
-    },
-
-    getCursor: function() {
-        return new OmletFeedCursor(this, this._db);
     },
 
     _getFeed: function() {
