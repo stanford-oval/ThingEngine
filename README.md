@@ -5,21 +5,25 @@
 ThingEngine is the workhorse behind ThingPedia, the open source platform for IoT rules
 that you can execute anywhere you want.
 
-ThingEngine comes in three form:
+**This repository is no longer used**
 
-- As a phone app, for Android
-- As an installable app for a home server
-- As a web service hosted at <https://thingengine.stanford.edu>
+ThingEngine has been split in several smaller modules:
 
-Additionally the system is able to synchronize the three installations that belong
-to the same user, so that each app can run on the form most suited to it, in a manner
-completely transparent to the developer, while preserving the privacy of the user.
+ - [thingengine-core](https://github.com/Stanford-IoT-Lab/thingengine-core) contains the engine itself
+   and the app, device and keyword databases
+ - [thingtalk](https://github.com/Stanford-IoT-Lab/ThingTalk) contains the implementation of ThingTalk
+ - [thingpedia-api](https://github.com/Stanford-IoT-Lab/thingpedia-api) contains the API that ThingPedia
+   interfaces can use
+ - [thingpedia-client](https://github.com/Stanford-IoT-Lab/thingpedia-client) contains the API to access
+   ThingPedia, retrieve and instantiate devices
+ - [thingpedia-discovery](https://github.com/Stanford-IoT-Lab/thingpedia-discovery) has the discovery
+   components for bluetooth and AllJoyn
+ - [thingpedia-builtins](https://github.com/Stanford-IoT-Lab/thingpedia-builtins) contains the builtin
+   interfaces (Omlet, Sabrina)
+ - [Sabrina](https://github.com/Stanford-IoT-Lab/Sabrina) contains the AI and NLP components of Sabrina
+ - [thingengine-platform-cloud](https://github.com/Stanford-IoT-Lab/thingengine-platform-cloud),
+   [thingengine-platform-server](https://github.com/Stanford-IoT-Lab/thingengine-platform-server) and
+   [thingengine-platform-android](https://github.com/Stanford-IoT-Lab/thingengine-platform-android)
+   contain the integration layers for running ThingEngine on a specific platform
 
-ThingEngine is based on node.js. It uses jxcore to provide Android integration
-and express as the web frontend.
-And it's free software, released under the GPLv2 or later, to help build
-a community of developers and users around it.
-
-ThingEngine is part of ThingPedia, a research project led by prof. Monica Lam, from Stanford University.
-You can find more information at <http://thingengine.stanford.edu/about>, and you
-can find user documentation [here](/doc/main.md)
+Documentation is still available in [thingengine-core](https://github.com/Stanford-IoT-Lab/thingengine-core).
